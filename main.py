@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 API_ENDPOINT = "https://api.npoint.io/caeda41b069d168022ac"
@@ -21,6 +21,13 @@ def home():
 @app.route('/contact')
 def contact():
     return render_template("contact.html")
+
+
+@app.route('/form-entry', methods=["POST"])
+def receive_data():
+    for k,v in request.form.items():
+        print(v)
+    return render_template("contact.html", data=True)
 
 
 # About page
